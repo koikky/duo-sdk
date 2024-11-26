@@ -13,7 +13,7 @@ A simple sdk for duo to build RT-Thread
 
 ### 配置环境
 #### 编译工具
-这个部分是用户自行配置，RT-Thread标准版在这里下载所需工具。
+这个部分是用户自行配置，RT-Thread标准版的编译工具下载地址 https://occ-oss-prod.oss-cn-hangzhou.aliyuncs.com/resource//1705395512373/Xuantie-900-gcc-elf-newlib-x86_64-V2.8.1-20240115.tar.gz。
 
 #### 执行环境
 在使用duo-sdk之前，需要在~/.bashrc里声明这几个变量：```RTT_CC```、```RTT_EXEC_PATH```、```RTT_CC_PREFIX```、```RTT_ROOT```，参照如下（这里以标准版为例）：
@@ -46,7 +46,7 @@ export RTT_ROOT="/home/{username}/xxx/.../xxx/rt-thread"
 使用的命令为``` $ scons ```         
 
 ### 打包
-当成功执行env.sh后，可以使用如下命令分别对大小核进行打包，打包为镜像文件。
+当成功执行env.sh后，可以使用如下命令分别对大小核进行打包，打包为镜像文件。            
 大核使用命令``` $ genbc_sd ```  
 小核使用命令``` $ gensc_fip ``` 
 
