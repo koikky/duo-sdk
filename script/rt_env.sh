@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# 定义要设置的环境变量的新值
 KERNEL_PATH=$1
 CORE_TYPE=$2
 
@@ -25,10 +24,3 @@ elif [ "${CORE_TYPE}" == "score" ]; then
 		echo "export RT_DUO_SKERNEL=\"${SKERNEL_PATH}\"" >> ~/.bashrc
 	fi
 fi 
-
-
-# 可选：使更改立即生效
-source ~/.bashrc
- 
-#echo "Environment variable RT_DUO_BKERNEL set to ${BKERNEL_PATH} in ~/.bashrc"
-
