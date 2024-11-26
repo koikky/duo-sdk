@@ -62,8 +62,7 @@ if PLATFORM == 'gcc':
 
     CXXFLAGS = CFLAGS + ' -std=gnu++17 -Wno-multichar -Wno-parentheses'
 
-if os.getenv('DUO_SCRIPT_DIR'):
-    SCRIPT_DIR = os.getenv('DUO_SCRIPT_DIR')
+SCRIPT_DIR = os.getenv('DUO_SCRIPT_DIR')
 
 SKERNEL_PATH = os.getenv('RT_DUO_SKERNEL')
 
@@ -74,9 +73,15 @@ DUMP_ACTION = OBJDUMP + ' -D -S $TARGET > rtthread.asm\n'
 POST_ACTION = OBJCPY + ' -O binary $TARGET rtthread.bin \n' + SIZE + ' $TARGET \n'
 
 if SKERNEL_PATH is None:
-    POST_ACTION += 'bash ' + SCRIPT_DIR + '/rt_env.sh ' + current_dir + ' score || echo "## please source env.sh firstly and check the RTT_ROOT" \n'
+	if SCRIPT_DIR is None:
+    	POST_ACTION += 'echo "## please source env.sh firstly and check the RTT_ROOT" \n'
+	else:
+		POST_ACTION += 'bash ' + SCRIPT_DIR + '/rt_env.sh ' + current_dir + ' score \n'
 else:	
 	if os.path.normpath(SKERNEL_PATH) != os.path.normpath(current_dir):
-		POST_ACTION += 'bash ' + SCRIPT_DIR + '/rt_env.sh ' + current_dir + ' score || echo "## please source env.sh firstly and check the RTT_ROOT" \n'
+		if SCRIPT_DIR is None:
+			POST_ACTION += 'echo "## please source env.sh firstly and check the RTT_ROOT" \n'
+		else:
+			POST_ACTION += 'bash ' + SCRIPT_DIR + '/rt_env.sh ' + current_dir + ' score \n'
 
 
